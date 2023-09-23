@@ -1,0 +1,55 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <form (ngSubmit)="onFilterSubmit()" class="container mt-4">
+        <div class="form-group">
+          <label for="adsTypeId">İlan Türü: </label>
+          <select id="adsTypeId" [(ngModel)]="filters.AdsTypeId" name="AdsTypeId" class="form-control">
+            <option *ngFor="let adType of adsTypes" [value]="adType.id">{{ adType.adsType }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="locationId">Şehir:</label>
+          <input type="text" id="locationId" [(ngModel)]="filters.LocationId" name="LocationId" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="numberOfRoomsId">Oda Sayısı:</label>
+          <input type="text" id="numberOfRoomsId" [(ngModel)]="filters.NumberOfRoomsId" name="NumberOfRoomsId" class="form-control">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Filtrele</button>
+      </form>
+    </div>
+    
+    <div class="col-md-8">
+      <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+        <ng-container *ngFor="let ad of ads.data">
+          <div class="col">
+            <div class="card mb-4 rounded-3 shadow-sm">
+              <div class="card-header py-3">
+                <h4 class="my-0 fw-normal">{{ ad.title }}</h4>
+              </div>
+              <div class="card-body">
+                <h1 class="card-title pricing-card-title">${{ ad.price }}<small class="text-body-secondary fw-light"></small></h1>
+                <ul class="list-unstyled mt-3 mb-4">
+                  <li>Şehir: {{ ad.location }}</li>
+                  <li>M2: {{ ad.area }}m2</li>
+                  <li>İlan Türü: {{ ad.adsType }}</li>
+                  <li>Oda Sayısı: {{ ad.roomType }}</li>
+                  <li>Banyo Sayısı: {{ ad.numberOfBathrooms }}</li>
+                  <li>Açıklama: {{ ad.description }}</li>
+                  <li>İlan No: {{ ad.id }}</li>
+                </ul>
+                <button type="button" class="w-100 btn btn-lg btn-outline-primary">Detay</button>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+
+      </div>
+
+    </div>
+  </div>
+</div>
